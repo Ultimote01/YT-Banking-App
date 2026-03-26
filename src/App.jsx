@@ -4,7 +4,7 @@ import TwoFactorLogin from "./pages/TwoFactorLogin";
 // import Dashboard from "./pages/Dashboard";
 import Setup2FA from "./pages/Setup2FA";
 import Signup from "./pages/Signup";
-import NotFound from "./pages/notFound";
+import NotFound from "./pages/NotFound";
 import LandingPage from "./pages/LandingPage";
 import Authentication from "./pages/Authentication";
 import Verify from "./pages/Verify";
