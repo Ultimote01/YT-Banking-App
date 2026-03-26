@@ -1,0 +1,19 @@
+
+.spinner-div {
+ height: 2rem;
+ width: 2rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(farthest-side, rgb(255 255 255 / 1) 94%, #0000)
+      top/10px 10px no-repeat,
+    conic-gradient(#0000 30%, rgb(255 255 255 / 1));
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 10px), #000 0);
+  animation: rotate 1s infinite linear;
+}
+
+
+@keyframes rotate {
+    to {
+    transform: rotate(1turn)
+  }
+}

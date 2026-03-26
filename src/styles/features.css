@@ -1,0 +1,119 @@
+
+.features-section {
+    padding : 5rem 0.5rem;
+    /* background-color: oklch(95.466% 0.00182 249.199 / 0.81); */
+}
+
+ 
+
+.features-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:0 1rem;
+    
+}
+
+.features-box h1{
+    font-family:  ui-sans-serif, system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 2.3rem;
+    line-height: 2.7rem;
+    text-align: center;
+    color: rgb(49, 49, 49);
+    padding-bottom: 0.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.features-box p {
+    font-size: 1.2rem;
+    line-height: 1.7rem;
+    text-align: center;
+    color: rgb(49, 49, 49);
+}
+
+.features-box1-l-c {
+    display: grid;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.features-box1{
+    border-radius: 1rem;
+    background-color: rgb(249 250 251 / 1);
+    outline: solid 2px oklch(95.466% 0.00182 249.199 / 0.818);
+    box-shadow: rgb(0 0 0 / 0 ) 0 0 0 0,rgb(0 0 0 / 0) 0 0 0 0,
+     rgb(0 0 0 / 0) 0 0 0 0, rgb(0 0 0 / 0.1 ) 0 0 1px 1px, rgb( 0 0 0 / 0.06)  0 0 1px 1px; 
+    padding: 4rem 2rem;
+}
+
+
+.features-box1-icon-c{
+    height: 2.5rem;
+    width: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(195, 172, 230, 0.248);
+    border-radius: 10px;
+}
+
+.features-box1-icon{
+    stroke: rgb(86 2 212 / 0.6);
+    height: 2rem;
+    width: 1.8rem;
+}
+
+.features-box1 h3 {
+    font-size: 1.3rem;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    line-height: 1.7rem;
+    padding-top: 1.5rem;
+    font-weight: 800;
+    color: rgb(49 49 49);
+}
+
+
+.features-box1 p{
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+    font-family: sans-serif;
+    color: rgb(49 49 49 / 0.9);
+    padding-top: 0.5rem;
+    
+}
+
+@media(min-width: 672px) {
+     .features-box p {
+        width: calc( 45rem  + 2px);
+    }
+     
+    .features-box1-l-c {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+
+@media(min-width: 1024px) {
+   
+ .features-box1-l-c {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+      .features-container{
+        max-width: 100rem;
+    }
+
+    .features-box1 {
+        padding: 2rem 2rem;
+    }
+
+    
+}
+
+
+
+    

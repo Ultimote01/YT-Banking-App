@@ -1,0 +1,81 @@
+.call-to-action-c {
+   padding: 6rem 1rem;
+   position: relative;
+   background-image: linear-gradient(to right bottom, oklch(0.21 0.034 264.665) 0%, oklch(43.287% 0.22513 291.753 / 0.96) 50%, rgb(40, 2, 98) 100%);
+ }
+
+ .call-to-action-b0x-c {
+    position: relative;
+ }
+ .call-to-action-box {
+    position: absolute;
+    top: 0;
+    left: 14rem;
+    background-color: oklab(53.449999999999996% 0.08525 -0.26344 / 0.2);
+    height: 22rem;
+    width: 22rem;
+    filter: blur(4rem);
+ }
+
+
+ .call-to-action-box1 > h1 {
+    font-size: 2.5rem;
+    line-height: 3rem;
+    font-weight: 800;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    color: rgb(249 250 251 / 1) ;
+    text-align: center;
+    margin-bottom: 1rem;
+ }
+
+ .call-to-action-box1 > p {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-family: sans-serif;
+    color: rgb(249 250 251 / 0.9) ;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+ }
+
+ .call-to-action-b-c {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+ }
+ .call-to-action-b-c button {
+    
+    font-size: 1.2rem;
+    padding: 1rem ;
+ }
+.call-to-action-bottom-c{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding-top: 3rem;
+}
+
+ .call-to-action-bottom-c svg{
+    width: 24px;
+    stroke: rgb(249 250 251 / 1);
+    height: 24px;
+ }
+ .call-to-action-bottom-c span {
+    padding-left: 0.5rem;
+    font-size: 0.8rem;
+    line-height: 1.2rem;
+    color: rgb(249 250 251 / 0.9);
+ }
+
+ @media(min-width: 640px) {
+
+     .call-to-action-b-c{
+        flex-direction: row;
+     }
+     .call-to-action-bottom-c {
+        flex-direction: row;
+     }
+ }

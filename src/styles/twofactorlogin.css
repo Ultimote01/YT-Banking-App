@@ -1,0 +1,64 @@
+.two-factor-login-c {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    background-image:  linear-gradient(to right bottom, 
+    oklch(48.411% 0.22876 294.263 / 0.334) 30%,
+     oklch(95.466% 0.00182 249.199 / 0.81) 100%
+    /* oklch(95.466% 0.00182 249.199 / 0.81) 100% */
+    )
+    ;
+   
+}
+
+.two-factor-login-v-c {
+    max-width: 30rem;
+    max-height: 14rem;
+    margin-top: 3rem;
+    background-color: rgba(255, 200, 200, 0);
+    margin-left: 2rem;
+    margin-right: 2rem;
+    border-radius: 10px;
+}
+
+.two-factor-login-v-c > h1 {
+    font-size: 1.8rem;
+    line-height: 2rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    margin-left: 5.5rem;
+    margin-bottom: 1rem;
+    color: rgb(0 0 0 / 0.8);
+}
+
+.two-factor-login-v-c > p {
+    margin-left: 2.3rem;
+    margin-bottom: 2rem;
+}
+
+.two-factor-login-v-c > button {
+    margin-left: 10rem;
+    margin-top: 2rem;
+    background-color: rgb(86 2 212 / 1);
+    color: rgb( 255 255 255 / 1);
+}
+.two-factor-login-v-c > button:hover{
+      background-color: rgb(86 2 212 / 0.85);
+}
+
+.two-factor-login-input-c{
+ display: flex;
+ gap: 1.5rem;
+ padding: 0 2rem;
+}
+
+.two-factor-login-input-c > input {
+    width:2.2rem;
+    height: 2.2rem;
+    background-color: rgba(255 255 255 / 0.9);
+    border-radius: 4px;
+    color: rgb(0 0 0 / 0.8);
+    text-align: center;
+    outline: solid 0.1px rgb( 0 0 0 / 0.7);
+}

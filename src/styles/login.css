@@ -1,0 +1,140 @@
+
+.login-box-c-h1 {
+    font-size: 1rem;
+    line-height: 1.3rem;
+    font-family:  ui-sans-serif, system-ui, sans-serif;
+    font-weight: 500;
+    color:  rgb(17 24 39 / 1);
+    margin-bottom: 1rem;
+    margin-top: 4rem;
+}
+.login-box-c-h1 > a {
+   font-size: 1.3rem;
+   line-height: 1.7rem;
+   font-family:  ui-sans-serif, system-ui, sans-serif;
+   font-weight: 500;
+   text-decoration: underline;
+
+}
+
+
+.login-box-form-c label {
+    font-size: 1.1rem;
+    line-height: 1.3rem;
+    font-family: sans-serif;
+}
+
+
+.login-box-form-c input {
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    outline-width: 1px;
+    outline-color: rgba(0 0 0 / 0.25);
+    border-radius: 5px;
+    appearance: none;
+    background-color: rgb(255 255 255 / 0.5);
+    padding: calc(0.7rem - 1px) calc(0.75rem - 1px);
+}
+ 
+.login-box-form-c button {
+    width: 100%;
+}
+
+
+.l-logo-container{
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap : 0.5rem;
+}
+
+
+
+.l-logo-container-span1{
+    color:  rgb(249 250 251 / 1) ;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 1000;
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+    border-radius: 4px;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    /* background-color: rgb(86 2 212 / 1); */
+
+}
+
+.login-box-h3 {
+     position: absolute;
+      top: 6rem;
+      left: 10%;
+      right: 10%;
+      font-size: 0.92rem;
+      line-height: 1rem;
+      text-align: center;
+      color: rgb(243, 98, 98);
+}
+
+
+
+.login-box1 {
+    display: flex;
+    justify-content: center;
+     column-gap: 1rem;
+     text-align: center;
+}
+
+.login-box1 span {
+    font-size: 0.8rem;
+    line-height: 1.2rem;
+    color: rgb(17 24 39 / 1);
+    
+}
+
+.login-box1 a {
+    font-size: 0.8rem;
+    line-height: 1.2rem;
+    color: rgb(17 24 39 / 1);
+}
+
+.login-box1 i {
+    margin-right: 1rem;
+}
+
+.login-line {
+    color: rgb(17 24 39 / 1);
+    font-size: .8rem;
+    line-height: 1rem;
+    margin-left: 1rem;
+    font-family: sans-serif;
+}
+.login-line a {
+     font-size: 1rem;
+    line-height: 1.2rem;
+    text-decoration: underline;
+}
+
+@media(min-width: 480px) {
+    .login-box-h3{
+      font-size: 0.95rem;
+      line-height: 1rem;
+    }
+}
+
+
+@media(min-width: 768px) {
+
+     .login-box-h3 {
+        top: 6.5rem;
+      font-size: 1.1rem;
+      line-height: 1.4rem;
+     }
+
+
+    .l-logo-container {
+        margin-top: 0;
+    }
+  
+}

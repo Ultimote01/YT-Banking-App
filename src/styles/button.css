@@ -1,0 +1,41 @@
+.button {
+    display: inline-flex;
+    justify-content: center;
+    padding: 0.5rem 0.75rem;
+    background-color: rgb(249 250 251 / 1);
+    color: rgb(86 2 212 / 1);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    outline-width: 2px;
+    outline-offset: 2px;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+.button-accent {
+    background-color: inherit;
+    color:  rgb(249 250 251 / 1);
+    /* background-color: rgb(86 2 212 / 1); */
+    outline-offset: 0;
+    outline-width: 0;
+}
+
+
+.button:hover {
+    outline-width: 2px;
+    outline-offset: 1px;
+    outline-style: solid;
+    outline-color: rgb(228 228 228 / 0.4);
+}
+
+
+.button-accent:hover{
+    filter: brightness(89%);
+    outline-width: 0;
+    outline-offset: 0;
+}
+
+ 

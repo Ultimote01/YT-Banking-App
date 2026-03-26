@@ -1,0 +1,129 @@
+.auth-container {
+    color: rgb( 255 255 225 / 1)
+}
+
+
+.auth-container >  h1 {
+    font-size: 1.7rem;
+    line-height: 2rem;
+    margin-bottom: 0.8rem;
+}
+
+.auth-container > p {
+    font-size: 0.8rem;
+    line-height: 1.1rem;
+    margin-top: 1rem;
+    color: rgb( 255 255 225 / 0.8);
+    text-align: center;
+}
+
+.auth-preferred-method-c {
+    width: 100%;
+    margin-top: 4.5rem;
+    border: solid 0.5px rgb( 255 255 225 / 0.4)  ;
+    border-radius: 4px;
+}
+
+.auth-preferred-method-c > div {
+    background-color: oklch(27.4% 0.006 286.033) ;
+    padding: 0.5rem 0 0.5rem 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.2rem;
+}
+
+.auth-preferred-method-c > p {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    margin-top: 1rem;
+    color: rgb( 255 255 225 / 0.8);
+    padding: 0 0.5rem 0 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.auth-preferred-method-c > select {
+    padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+    border-radius: 6px;
+    margin-left: 0.5rem;
+    margin-bottom: 0.8rem;
+    font-size: 0.8rem;
+    line-height: 1.2rem;
+    background-color: oklch(21% 0.006 285.885);
+    outline: 0.2px solid rgb( 255 255 225 / 0.8);
+    
+}
+
+.auth-2fa-method-c {
+    width: 100%;
+    margin-top: 5rem;
+    border: solid 0.5px rgb( 255 255 225 / 0.4)  ;
+    border-radius: 4px;
+}
+
+
+.auth-2fa-method-c-div1 {
+    background-color: oklch(27.4% 0.006 286.033) ;
+    padding: 0.5rem 0 0.5rem 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.2rem;
+}
+
+.auth-2fa-method-c-div2{
+    width: 100%;
+    margin-top: 3rem;
+     margin-bottom: 1rem;
+}
+
+
+
+.auth-2fa-method-wrapper{
+    margin-bottom: 0.5rem;
+}
+
+.auth-2fa-method {
+     padding: 0.8rem 0.5rem;
+    border: solid 0.3px rgb( 255 255 225 / 0.1) ;
+}
+
+.auth-2fa-method-ct {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+.auth-2fa-method-ct > button {
+    padding: 0.2rem 0.8rem;
+    background-color: oklch(27.4% 0.006 286.033);
+    border-radius: 5px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 0.8rem;
+}
+
+@media(min-width: 640px) {
+    .auth-2fa-method-c {
+        margin-top: 8rem;
+    }
+}
+
+@media(min-width: 768px) {
+    .auth-container{
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+     
+}
+
+@media(min-width: 1024px) {
+    .auth-preferred-method-c > p {
+        padding-bottom: 2rem;
+    }
+     .auth-container{
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+}
+
+
