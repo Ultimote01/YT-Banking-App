@@ -4,13 +4,12 @@
    background-image: linear-gradient(to right bottom, oklch(0.21 0.034 264.665) 0%, oklch(43.287% 0.22513 291.753 / 0.96) 50%, rgb(40, 2, 98) 100%);
  }
 
- .call-to-action-b0x-c {
+ .call-to-action-box-c {
     position: relative;
  }
  .call-to-action-box {
     position: absolute;
-    top: 0;
-    left: 14rem;
+    inset: 0;
     background-color: oklab(53.449999999999996% 0.08525 -0.26344 / 0.2);
     height: 22rem;
     width: 22rem;

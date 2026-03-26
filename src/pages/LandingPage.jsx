@@ -8,7 +8,6 @@ import Features from "../components/Features";
 import Security from "../components/Security";
 import CallToAction from "../components/CallToAction";
 import Footer from "../components/Footer";
-// import getUserActive from "../util/useIsLoggedIn";
 import FP from "../components/FullPage";
 import Spinner from "../components/Spinner";
 import Dashboard from "./Dashboard"
@@ -64,8 +63,8 @@ export default function  LandingPage() {
             <Features/>
             <Security/>
             <CallToAction/>
-            <Footer/>
             </main>
+             <Footer/> 
             </> }
              
         </>
