@@ -3,9 +3,35 @@ import { useNavigate } from "react-router-dom";
 
 
 import DashboardLayout from "../components/DashboardLayout"
-
+import SetGoogleAuth from "../components/SetGoogleAuth";
+import SetWhatsAppAuth from "../components/SetWhatsAppAuth";
 import "../styles/authentication.css"
-import SetTwoFactor from "./Setup2FA";
+ 
+
+
+function GoogleAuthIcon (){
+  return(
+    <img src="google-auth-icon.png" style={{
+      marginTop: "0.2rem",
+      width: "20px",
+      height: "20px",
+      objectFit: "contain"
+    }}/>
+  )
+}
+
+
+function WAIcon() {
+  return(
+    <img src="WAIcon.webp" style={{
+      marginTop: "0.35rem",
+      width: "15px",
+      height: "15px",
+      objectFit: "contain"
+    }}/>
+  )
+}
+
 
 
 
@@ -80,18 +106,19 @@ export default function Authentication() {
                 <div  className="auth-2fa-method-c-div2">
 
 
-                {[["Google Authenticator", "Create two-factor-authentication with the Google authenticator app", SetTwoFactor],
-                ["Phone Number", "Enable two-factor-authentication with your phone number"]
+                {[["Google Authenticator", GoogleAuthIcon, "Create two-factor-authentication with the Google authenticator app", SetGoogleAuth],
+                ["WhatsApp",WAIcon, "Enable two-factor-authentication with your WhatsApp  number", SetWhatsAppAuth]
                 
                 /* eslint-disable-next-line */
-                ].map(([method, description, Component], index)=>
+                ].map(([method, Icon, description, Component], index)=>
                 <div className="auth-2fa-method-wrapper" key={index}>
                 
                 <div className=" auth-2fa-method">
 
                   <div className="auth-2fa-method-ct"> 
-                  <div>{method}
-                    <p style={{fontSize: "0.69rem", lineHeight: "1rem", color: "rgb( 255 255 225 / 0.8)"}}>{description}</p>
+                  <div>
+                    <div style={{display: "flex", columnGap: "0.5rem"}}>{method}{Icon && <Icon/>}</div>
+                    <p style={{fontSize: "0.72rem", lineHeight: "1rem", color: "rgb( 255 255 225 / 0.8)"}}>{description}</p>
                   </div>
                   <button disabled={open} onClick={()=> {setOpen(true); setOpenMethod(method)}}>
                   {userObject?.user?.twoFAMethods?.some((el)=>

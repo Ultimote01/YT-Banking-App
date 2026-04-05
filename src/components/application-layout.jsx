@@ -133,7 +133,8 @@ export function ApplicationLayout({ user, children }) {
      try{
         const signOutUpdate= localStorage.getItem("signOutUpdate");
         if (signOutUpdate !== null && signOutUpdate !== undefined) {
-           await api.post("auth/logout",  JSON.parse(signOutUpdate));
+           const res = await api.post("auth/logout",  JSON.parse(signOutUpdate));
+           console.log(res);
            localStorage.removeItem("signOutUpdate");
            localStorage.removeItem("user");
            if (location.pathname !== "") {
@@ -151,7 +152,9 @@ export function ApplicationLayout({ user, children }) {
            navigate(0);
            
     /* eslint-disable-next-line */
-    }catch(err) {}
+    }catch(err) {
+      console.log(err);
+    }
   }
 
 

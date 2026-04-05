@@ -30,7 +30,12 @@ body{
 
 button:focus,
 button:focus-visible {
-  outline: 4px auto ;
+  outline: none ;
+}
+
+input:focus,
+input:focus-visible{
+  outline: none;
 }
 
 

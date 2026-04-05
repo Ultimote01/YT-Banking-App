@@ -1,0 +1,82 @@
+.wa-setup-auth-c {
+    display: flex;
+    flex-direction: column;
+    margin-left: -1rem;
+    position: relative;
+    width: 100%;
+}
+
+.wa-setup-auth-phone-c {
+    margin-left: 1rem;
+    position: relative;
+    aspect-ratio: 366/450;
+    max-width: 20rem;
+    width: 100%; 
+    transform: translateX(-3.8rem);
+}
+
+.wa-setup-auth-number-c {
+    display: flex;
+    flex-direction: column;
+}
+
+.wa-setup-auth-number-c > form > h2 {
+    font-size: 0.85rem;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.wa-setup-auth-input-c {
+    display: flex;
+    margin-right: 0.2rem;
+}
+.wa-setup-auth-input-c > select {
+    border-radius: 6px;
+    z-index: 2;
+    font-size: 0.9rem;
+}
+
+.wa-setup-auth-input-c > input {
+    width: auto;
+    border-radius: 6px;
+    margin-left: -0.4rem;
+    padding-left: 0.4rem;
+    font-size: 0.9rem;
+}
+
+.wa-setup-auth-input-c > button {
+  padding: 0.2rem  0.2rem;
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+  border-radius: 6px;
+  background-color: oklch(27.4% 0.006 286.033);
+  color: rgb( 255 255 255 / 1);
+}
+
+.wa-setup-auth-number-c > form > button{
+
+    margin-top: 0.6rem;
+    padding: 0.1rem  0.3rem;
+    max-width: 5rem;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    background-color:  rgb(240 35 25 / 1);
+     /* background-color:  rgb(48, 24, 235); */
+    color: oklch(96.8% 0.00409 285.927);
+}
+
+.wa-setup-err-exp {
+    width: 5rem;
+    height: 5rem;
+    stroke: red;
+    transition: stroke 5s ease 1s; 
+}
+
+
+.wa-setup-success-exp {
+    width: 5rem;
+    height: 5rem;
+    stroke: green;
+    transition: stroke 5s ease 1s; 
+}

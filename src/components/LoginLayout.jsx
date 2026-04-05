@@ -77,8 +77,10 @@ export default function LoginLayout(){
 
         }catch(err) {
             setError(err?.response?.data)
+            console.log("error", err)
         }
         setIsLoading(false);
+         
     }
 
    

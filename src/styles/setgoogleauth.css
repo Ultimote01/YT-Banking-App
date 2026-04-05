@@ -1,3 +1,7 @@
+.setup-two-factor-c {
+    margin-left: -1rem;
+}
+
 .setup-two-factor-c > img {
    height: 9rem;
    width: 9rem;
@@ -26,16 +30,33 @@
 
 .setup-two-factor-b-c > button[role = cancel] {
    background-color: rgb(201, 31, 31);
-   font-size: 0.8rem;
+   font-size: 0.9rem;
    padding: 0.2rem 0.3rem;
    border-radius: 4px;
-   color: rgb( 255 255 255 / 1);
+   color: oklch(96.8% 0.00409 285.927);
 }
 
 .setup-two-factor-b-c > button[role = verify ]{
     background-color: rgb(86 2 212 / 1);
-   font-size: 0.8rem;
+   font-size: 0.9rem;
    padding: 0.2rem 0.37rem;
    border-radius: 4px;
    color: rgb( 255 255 255 / 1);
+}
+
+
+.g-auth-copy-icon {
+    width: 20px;
+    height: 20px;
+    margin-left: 0.3rem;
+}
+
+.g-auth-copy-button{
+       position: relative;
+}
+
+.g-auth-copy-button-note::before{
+    content: "copied";
+    position: absolute;
+    top: 1.2rem;
 }
