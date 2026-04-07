@@ -88,7 +88,7 @@ export default function  WhatsAppAuthLogin() {
                                     localStorage.setItem("user", JSON.stringify(res1.data.user));
                                     localStorage.removeItem("waAuthObject");
                                     setStatus(res1.data.status);
-                                      // navigate("/", {replace: true})
+                                      navigate("/", {replace: true})
                                    
 
                                 }else if ( res1.data.status === "error"){
@@ -97,7 +97,7 @@ export default function  WhatsAppAuthLogin() {
                                     clearInterval( getOTPStatus);
                                     localStorage.setItem("2FA-Error",res1.data?.message.split(".")[0])
                                     localStorage.removeItem("waAuthObject");
-                                    // navigate("/login", {replace: true});
+                                    navigate("/login", {replace: true});
                                      }
                                  
 
