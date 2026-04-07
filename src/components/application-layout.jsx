@@ -134,7 +134,7 @@ export function ApplicationLayout({ user, children }) {
         const signOutUpdate= localStorage.getItem("signOutUpdate");
         if (signOutUpdate !== null && signOutUpdate !== undefined) {
            const res = await api.post("auth/logout",  JSON.parse(signOutUpdate));
-           console.log(res);
+           
            localStorage.removeItem("signOutUpdate");
            localStorage.removeItem("user");
            if (location.pathname !== "") {
@@ -153,7 +153,7 @@ export function ApplicationLayout({ user, children }) {
            
     /* eslint-disable-next-line */
     }catch(err) {
-      console.log(err);
+     
     }
   }
 

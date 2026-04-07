@@ -1,11 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
-import TwoFactorLogin from "./pages/TwoFactorLogin";
+import GoogleAuthLogin from "./pages/GoogleAuthLogin";
 import Signup from "./pages/Signup";
 import NotFound from "./pages/NotFound";
 import LandingPage from "./pages/LandingPage";
 import Authentication from "./pages/Authentication";
 import Verify from "./pages/Verify";
+import WhatsAppAuthLogin from "./pages/WhatsAppAuthLogin";
 
 export default function App() {
   return (
@@ -14,10 +15,10 @@ export default function App() {
         <Route path="/" element={<LandingPage/>}/>
         <Route path="login" element={<Login />} />
         <Route path="/signup" element={<Signup/>} />
-        <Route path="/2fa" element={<TwoFactorLogin />} />
         <Route path="/authentication" element={<Authentication/>}/>
         <Route path="/verify/:id" element={<Verify/>}></Route>
-        <Route path="/authenticator/:app" element={<TwoFactorLogin/>}></Route>
+        <Route path="/app-authentication/" element={<GoogleAuthLogin/>}/>
+        <Route path="wa-authentication/" element={<WhatsAppAuthLogin/>}/>
         <Route path="*" element={< NotFound/>}/>
       </Routes>
     </BrowserRouter>

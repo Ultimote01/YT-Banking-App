@@ -23,18 +23,21 @@ export default function LoginLayout(){
     useEffect(()=> {
         const user = JSON.parse(localStorage.getItem("user"));
         const tempToken = JSON.parse(localStorage.getItem("tempToken"));
+        const waAuthObject = JSON.parse(localStorage.getItem("waAuthObject"));
 
         if (user?.user) {
             return navigate("/", {replace: true});
         }
-        if (tempToken?.requires2FA) {
-            
-            if (tempToken.method === "Google Authenticator"){
-    
-                navigate("/authenticator/app")
+     
+            if (tempToken?.method === "Google Authenticator" && tempToken?.requires2FA){
+                navigate("/app-authentication")
             }
-              
-        }
+
+            if (waAuthObject?.method === "WhatsApp" && waAuthObject?.requires2FA) {
+                navigate("/wa-authentication")
+            }
+            
+            
 
 
         function set2FAError(){
@@ -61,11 +64,16 @@ export default function LoginLayout(){
                 const res = await api.post("/auth/login",{email,password});
                 
                 if (res.data.requires2FA){
-                    localStorage.setItem("tempToken", JSON.stringify(res.data))
-
                     if (res.data?.method === "Google Authenticator"){
-                        return navigate("/authenticator/app")
+                        localStorage.setItem("tempToken", JSON.stringify(res.data))
+                        return navigate("/app-authentication")
+                        
+                    }else if  (res.data?.method === "WhatsApp"){
+                        const methodObject = {email, ...res.data.waMethodObject}
+                        localStorage.setItem("waAuthObject", JSON.stringify(methodObject));
+                        return navigate(`/wa-authentication`);
                     }
+
                     return navigate("/");
 
                 }
@@ -77,7 +85,7 @@ export default function LoginLayout(){
 
         }catch(err) {
             setError(err?.response?.data)
-            console.log("error", err)
+           
         }
         setIsLoading(false);
          

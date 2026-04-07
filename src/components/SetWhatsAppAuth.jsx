@@ -56,108 +56,118 @@ export default function  SetWhatsAppAuth({setOpen, method, setOpenMethod,setUser
     const [userNumber, setUserNumber] = useState();
     const [errorMessage, setErrorrmessage] = useState('');
 
-     console.log("Function call",status);
+
+
+    function handleSignOutUpdate (countryCode, number){
+
+        const activeUser = JSON.parse(localStorage.getItem("user"));
+        const signOutUpdate = JSON.parse(localStorage.getItem("signOutUpdate"));
+
+        if (signOutUpdate !== null && signOutUpdate !== undefined) {
+
+            if (signOutUpdate?.twoFAmethods !== undefined){
+            const twoFAExistSN = signOutUpdate.twoFAMethods.some((el)=> {
+                if (el.name === method) return true;
+                return false;
+            })
+
+                if (!twoFAExistSN) signOutUpdate.user.twoFAMethods.push({
+                    name: method,
+                    preferred: false,
+                    country_code: countryCode,
+                    mobile_no: number
+                    })
+            } else if (signOutUpdate?.twoFAMethods === undefined){
+                signOutUpdate.twoFAMethods = [].push({
+                    name:method,
+                    preffered: false,
+                    country_code: countryCode,
+                    mobile_no: number
+                })
+            }
+            localStorage.setItem("signOutUpdate", JSON.stringify(signOutUpdate));
+        }else if (signOutUpdate === null || signOutUpdate === undefined) {
+            localStorage.setItem("signOutUpdate", JSON.stringify({
+                twoFAMethods: [{
+                    name:method,
+                    preferred: false,
+                    country_code: countryCode,
+                    mobile_no: number
+            }]
+            }))
+        }
+            
+            const twoFAExist = activeUser.user.twoFAMethods.some((el)=> {
+            if (el.name === method) return true;
+            return false;
+            })
+
+            if (!twoFAExist) activeUser.user.twoFAMethods.push({
+                name: method,
+                preferred: false
+            })
+
+            
+            localStorage.setItem("user", JSON.stringify(activeUser));
+             setUserObject(activeUser)
+        
+    }
 
 
   
 
     async function handleWASetup (countryCode, number){
-            let scopeStatus ='none';
-    
-            const getOTPStatus = setInterval(async ()=>{
-                const resList = [ "error", "verified"]
+
                 
- 
-                try {
-                     if (!resList.includes(scopeStatus)){
-                    const res = await api.get("/2fa/session-status");
-                    console.log(res.data);
-
-
-                    if (resList.includes(res.data.status)) {
-                      console.log("Session ended",scopeStatus)
-                        if (res.data.status === "verified"){
-
-                            const activeUser = JSON.parse(localStorage.getItem("user"));
-                            const signOutUpdate = JSON.parse(localStorage.getItem("signOutUpdate"));
-
-                            if (signOutUpdate !== null && signOutUpdate !== undefined) {
-
-                                if (signOutUpdate?.twoFAmethods !== undefined){
-                                const twoFAExistSN = signOutUpdate.twoFAMethods.some((el)=> {
-                                    if (el.name === method) return true;
-                                    return false;
-                                })
-
-                                    if (!twoFAExistSN) signOutUpdate.user.twoFAMethods.push({
-                                        name: method,
-                                        preferred: false
-                                    })
-                                } else if (signOutUpdate?.twoFAMethods === undefined){
-                                    signOutUpdate.twoFAMethods = [].push({
-                                        name:method,
-                                        preffered: false
-                                    })
-                                }
-                                localStorage.setItem("signOutUpdate", JSON.stringify(signOutUpdate));
-                            }else if (signOutUpdate === null || signOutUpdate === undefined) {
-                                localStorage.setItem("signOutUpdate", JSON.stringify({
-                                    twoFAMethods: [{
-                                        name:method,
-                                        preferred: false
-                                }]
-                                }))
-                            }
-                             
-                                const twoFAExist = activeUser.user.twoFAMethods.some((el)=> {
-                                if (el.name === method) return true;
-                                return false;
-                                })
-
-                                if (!twoFAExist) activeUser.user.twoFAMethods.push({
-                                    name: method,
-                                    preferred: false
-                                })
-
-                               
-                                localStorage.setItem("user", JSON.stringify(activeUser));
-                                setUserObject(activeUser)
-                                setOpen(false);
-                                setOpenMethod("");
-
-                                }
-                        if (res.data.status === "error") setErrorrmessage(res.data?.message);
-                        clearInterval(getOTPStatus);
-                    }
-
-                    scopeStatus = res.data.status;
-                    setStatus(res.data.status);
-                }
-                }catch(err){
-                    console.log(err);
-                    clearInterval(getOTPStatus);
-                }
- 
-            }, 2000); 
-
-            if (scopeStatus && scopeStatus !== "pending"){
-                 
-                try{
-                    const res = await api.post("/2fa/send-otp", {
-                        phone: number,
-                        countryCode
+            try{
+                const res = await api.post("/2fa/send-otp", {
+                        mobile_no: number,
+                        country_code: countryCode
                     });
-                     console.log(res)
                     setData(res.data);
 
+                    if (res.data.status === "success"){
+
+                        const getOTPStatus  = setInterval(async ()=>{
+                            try{
+                                const res1 = await api.post("/2fa/session-status",{
+                                    otp_session_id: res.data.otp_session_id
+                                });
+
+                                if (res1.data.status === "verified"){
+                                    clearInterval( getOTPStatus);
+                                    setStatus(res1.data.status)
+                                    handleSignOutUpdate(countryCode, number);
+                                    setOpen(false);
+                                    setOpenMethod("");
+
+                                }else if ( res1.data.status === "error"){
+                                    setErrorrmessage(res1.data?.message);
+                                    setStatus(res1.data.status);
+                                    clearInterval( getOTPStatus);
+                                     }
+                                 
+
+                            }catch(err){
+                              
+                            }
+
+                        }, 2000)
+
+                        const cancelButton =document.getElementById("wa-setup-cancel-button");
+                        cancelButton.setAttribute("data-closeInterval", getOTPStatus);
+
+                    } else if ( res.data.status === "error"){
+                        setErrorrmessage(res.data?.message);
+                        setStatus(res.data.status);
+         
+                    }
+
+
                 }catch(err){
-                    console.log(err)
+                  
                 }
-            }
-
-
-           const cancelButton =document.getElementById("wa-setup-cancel-button");
-            cancelButton.setAttribute("data-closeInterval", getOTPStatus);
+     
     } 
         
 
