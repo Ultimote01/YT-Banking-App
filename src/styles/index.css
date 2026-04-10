@@ -8,10 +8,8 @@
   line-height: 1.5;
   font-weight: 400;
   scroll-behavior: smooth;
-
   /* color-scheme: light dark; */
   color: rgb(17 24 39 / 1);
-  background-color: rgb(249 250 251 / 1);
   
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -26,6 +24,7 @@
 
 body{
   height: 100lvh;
+  background-color: rgb(249 250 251 / 1);
 }
 
 button:focus,
