@@ -162,7 +162,7 @@ export default function  WhatsAppAuthLogin() {
         
           <div style={{display: "flex", flexDirection: "column", 
                  backgroundImage: "linear-gradient(to right bottom,  oklch(48.411% 0.22876 294.263 / 0.334) 30%, oklch(95.466% 0.00182 249.199 / 0.81) 70% ,oklch(95.466% 0.00182 249.199 / 0.81) 100%)"
-                , height: "100vh", alignItems: "center" }}>
+                , minHeight: "100%", alignItems: "center" }}>
 
                
 
