@@ -57,7 +57,6 @@ export default function  SetWhatsAppAuth({setOpen, method, setOpenMethod,setUser
     const [errorMessage, setErrorrmessage] = useState('');
 
 
-
     function handleSignOutUpdate (countryCode, number){
 
         const activeUser = JSON.parse(localStorage.getItem("user"));
@@ -114,6 +113,36 @@ export default function  SetWhatsAppAuth({setOpen, method, setOpenMethod,setUser
     }
 
 
+    const getOTPStatus = async (otp_session_id, countryCode, number, taskStatus)=>{
+            try{
+                const res1 = await api.post("/2fa/session-status",{
+                    otp_session_id:otp_session_id
+                });
+
+                if (res1.data.status === "verified"){
+                    taskStatus.status= "end";
+                    setStatus(res1.data.status)
+                    setTimeout(()=>{
+                    handleSignOutUpdate(countryCode, number);
+                    setOpen(false);
+                    setOpenMethod("");
+                    },2000)
+
+                }else if ( res1.data.status === "error"){
+                    taskStatus.status= "end";
+                    setErrorrmessage(res1.data?.message);
+                    setStatus(res1.data.status);
+                    
+                }
+                    
+            /* eslint-disable-next-line*/
+            }catch(err){
+                taskStatus.status= "end";
+                setErrorrmessage("Try Again")
+               
+            }
+
+        }
   
 
     async function handleWASetup (countryCode, number){
@@ -127,32 +156,14 @@ export default function  SetWhatsAppAuth({setOpen, method, setOpenMethod,setUser
                     setData(res.data);
 
                     if (res.data.status === "success"){
+                        const taskStatus = {status: "begin"}
+                        async function task(){
+        
+                            await getOTPStatus(res.data.otp_session_id,countryCode,number, taskStatus);
+                            if (taskStatus.status !== "end") setTimeout(task, 2000);
+                        }
 
-                        const getOTPStatus  = setInterval(async ()=>{
-                            try{
-                                const res1 = await api.post("/2fa/session-status",{
-                                    otp_session_id: res.data.otp_session_id
-                                });
-
-                                if (res1.data.status === "verified"){
-                                    clearInterval( getOTPStatus);
-                                    setStatus(res1.data.status)
-                                    handleSignOutUpdate(countryCode, number);
-                                    setOpen(false);
-                                    setOpenMethod("");
-
-                                }else if ( res1.data.status === "error"){
-                                    setErrorrmessage(res1.data?.message);
-                                    setStatus(res1.data.status);
-                                    clearInterval( getOTPStatus);
-                                     }
-                                 
-
-                            }catch(err){
-                              
-                            }
-
-                        }, 2000)
+                        task();
 
                         const cancelButton =document.getElementById("wa-setup-cancel-button");
                         cancelButton.setAttribute("data-closeInterval", getOTPStatus);
@@ -160,12 +171,13 @@ export default function  SetWhatsAppAuth({setOpen, method, setOpenMethod,setUser
                     } else if ( res.data.status === "error"){
                         setErrorrmessage(res.data?.message);
                         setStatus(res.data.status);
+                        
          
                     }
 
 
                 }catch(err){
-                  
+                  console.log(err)
                 }
      
     } 
@@ -181,9 +193,10 @@ export default function  SetWhatsAppAuth({setOpen, method, setOpenMethod,setUser
                 }}/>
                 {!userNumber && <div className="wa-setup-auth-number-c">
                     <form> 
-                    <h2>Enter number to register for WhatsApp 2FA </h2>
+                    <h2 className="text-zinc-950 dark:text-white">Enter number to register for WhatsApp 2FA </h2>
                     <div className="wa-setup-auth-input-c"> 
-                        <select id="wa-setup-country-code" >
+                        <select className="bg-[rgb(244,244,245,1)] outline-[0.2px] outline-[rgb(255,255,225,0.8)] outline-solid text-zinc-950 dark:outline-[rgb(24,24,27)] "
+                        id="wa-setup-country-code" >
                         {[ [["+234","Nigeria"]],
                         [["+233", "Ghana"]],
                         [["+225", "Ivory Coast"]], 
@@ -191,9 +204,9 @@ export default function  SetWhatsAppAuth({setOpen, method, setOpenMethod,setUser
                             <option value={code[0]} key={index}>{code[0]}</option>
                         )}
                         </select>
-                        <input type="text" id="wa-setup-phone-input" maxLength={15}/>
+                        <input className=" border-[0.9px] text-black  py-1  border-[rgb(244,244,245,1)] outline-solid  dark:outline-[rgb(24,24,27)]" type="text" id="wa-setup-phone-input" maxLength={15}/>
 
-                        <Button onClick={(e)=> {
+                        <Button className=" bg-purple-700 dark:bg-[#27272a]" onClick={(e)=> {
 
                         e.preventDefault();
                         const countryCode = document.getElementById("wa-setup-country-code").value?.replace("+", "");
@@ -238,8 +251,9 @@ export default function  SetWhatsAppAuth({setOpen, method, setOpenMethod,setUser
 
                 </div>
                  
-                <p style={{marginTop: "1rem", fontSize: "0.9rem", lineHeight: "1.2rem",
-                    marginLeft: "1rem"
+                <p
+                className="text-zinc-900 dark:text-[rgb(255,255,225,0.8)]"
+                 style={{marginTop: "1rem", fontSize: "0.9rem", lineHeight: "1.2rem", marginLeft: "1rem"
                 }}>
                 Scan QR code or
                 <Link to={data?.intent} target="_blank"

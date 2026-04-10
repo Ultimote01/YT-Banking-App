@@ -43,6 +43,7 @@ async function copyText( code) {
 export default function SetGoogleAuth({setOpen, setOpenMethod, method,setUserObject}) {
   const [otp, setOtp] = useState("");
   const [qr, setQr] = useState(null);
+  const [errorObj, setErrorObj] = useState(null);
 
 
 
@@ -89,7 +90,7 @@ export default function SetGoogleAuth({setOpen, setOpenMethod, method,setUserObj
           if (el.name === method) return true;
           return false;
           })
-
+ 
           if (!twoFAExist) activeUser.user.twoFAMethods.push(res.data.twoFAData)
             
     localStorage.setItem("user", JSON.stringify(activeUser));
@@ -97,35 +98,34 @@ export default function SetGoogleAuth({setOpen, setOpenMethod, method,setUserObj
     setUserObject(JSON.parse(localStorage.getItem("user")));
     setOpen(false);
     setOpenMethod("");
-    
-
     }
-
      /* eslint-disable-next-line */
-    }catch(err) {}
-  
-    
-    
+    }catch(err) {
+      console.log("Error",err?.response?.data);
+      setErrorObj(err?.response?.data);
+    }
   };
-
 
 
   return (
     
     <div className="setup-two-factor-c">
       <hr style={{marginTop: "-0.5rem", marginBottom: "1rem"}}/>
+      {errorObj && <p className="text-[red] pl-[9px]">{errorObj?.error? `!! ${errorObj?.error}`: ""}</p>}
       {qr && <img src={qr?.qr} alt={qr?.manualCode?? "Qr code"}/>}
 
-      <h2>Scan QR code to register {isMobile() ? <span>or copy 
+      <h2 className="text-zinc-950 dark:text-white">Scan QR code to register {isMobile() ? <span>or copy 
       <button className="g-auth-copy-button" onClick={()=> copyText(qr?.manualCode)}><CopyIcon className="g-auth-copy-icon"/>
       </button> 
 
       <br/><br/> Enter Auth code below</span>: `and enter Auth code below` }</h2>
 
-      <input placeholder="123456" onChange={e => setOtp(e.target.value)} />
+      <input 
+      className=" border-[0.5px] text-black  py-[3px] pl-[4px]  dark:border-[rgb(135, 118, 118)]"
+       placeholder="123456" onChange={e => setOtp(e.target.value)} maxLength={10} />
       <div className="setup-two-factor-b-c"> 
       <button role="cancel" onClick={()=>{setOpen(false); setOpenMethod("")}}>Cancel</button>
-      <button role="verify" onClick={verify}>Verify</button>
+      <button disabled={otp? false : true} role="verify" onClick={verify}>Verify</button>
       </div>
     </div>
   );

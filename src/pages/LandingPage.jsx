@@ -30,12 +30,9 @@ export default function  LandingPage() {
         async function authentice() {
             setIsLoading(true);
             try{
-
             const data = JSON.parse(localStorage.getItem("user"));
- 
                     setUserData(
                     {
-                        status: data.status,
                         user: data.user
                     }
                 );
@@ -55,7 +52,7 @@ export default function  LandingPage() {
     
     return (
         <>   
-            {userData.status === 200 || userData.status === 201? <Dashboard /> : 
+            {userData.user?.firstName? <Dashboard /> : 
             ["302"].includes(String(userData.status))? <div>not found</div> : <>
             <Header/>
             <main style={{flex: "1 1 auto"}}>

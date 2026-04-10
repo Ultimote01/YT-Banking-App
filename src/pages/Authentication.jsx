@@ -79,27 +79,29 @@ export default function Authentication() {
 
         <div className="auth-container">
 
-            <h1>Two-factor Authentication</h1>
+            <h1 className="text-zinc-950 dark:text-white">Two-factor Authentication</h1>
             <hr></hr>
-            <p>Two-factor authentication adds an additional layer of security to your account by requiring more than just a password to sign in</p>
+            <p className="text-zinc-900 dark:text-[rgb(255,255,225,0.8)]">Two-factor authentication adds an additional layer of security to your account by requiring more than just a password to sign in</p>
 
-            <div className="auth-preferred-method-c">
-                <div> 
+            <div className="auth-preferred-method-c border-[0.5px] dark:border-[rgb(255,255,225,0.4)]">
+                <div className="bg-[rgb(244,244,245,1)] text-zinc-950 dark:text-white dark:bg-[#27272a]"> 
                 <h3>Prefered 2FA method</h3>
                 </div>
 
-                <p>Set your preferred method to use for two-factor authentication when signing into </p>
+                <p className="text-zinc-900 dark:text-[rgb(255,255,225,0.8)]">Set your preferred method to use for two-factor authentication when signing into </p>
 
-                <select name="preferred-method" onChange={(e)=> handleSelect(e)}>
+                <select name="preferred-method" onChange={(e)=> handleSelect(e)} 
+                  className="bg-[rgb(244,244,245,1)] outline-[0.2px] outline-[rgb(255,255,225,0.8)] outline-solid text-zinc-950 dark:text-white dark:bg-[#27272a]"
+                  >
                
                 {[{name:"none"},...authMethods].map((method, index)=> 
                 <option  key={index} value={method?.name} selected={method?.preferred}  >{method?.name}</option> )}
             </select>
             </div>
 
-            <div className="auth-2fa-method-c">
+            <div className="auth-2fa-method-c border-[0.5px] dark:border-[rgb(255,255,225,0.4)]">
 
-                <div className="auth-2fa-method-c-div1">
+                <div className="auth-2fa-method-c-div1 bg-[rgb(244,244,245,1)] text-zinc-950 dark:text-white dark:bg-[#27272a]">
                   <h3> Two-factor methods </h3>
                   </div>
 
@@ -113,14 +115,16 @@ export default function Authentication() {
                 ].map(([method, Icon, description, Component], index)=>
                 <div className="auth-2fa-method-wrapper" key={index}>
                 
-                <div className=" auth-2fa-method">
+                <div className=" auth-2fa-method border-[0.3px] border-[gb(244,244,245,1)]  dark:border-[rgb(255,255,225,0.1)]">
 
                   <div className="auth-2fa-method-ct"> 
                   <div>
-                    <div style={{display: "flex", columnGap: "0.5rem"}}>{method}{Icon && <Icon/>}</div>
-                    <p style={{fontSize: "0.72rem", lineHeight: "1rem", color: "rgb( 255 255 225 / 0.8)"}}>{description}</p>
+                    <div style={{display: "flex", columnGap: "0.5rem"}} className="text-zinc-950 dark:text-white">{method}{Icon && <Icon/>}</div>
+                    <p style={{fontSize: "0.72rem", lineHeight: "1rem"}} className="text-zinc-900 dark:text-[rgb(255,255,225,0.8)]">{description}</p>
                   </div>
-                  <button disabled={open} onClick={()=> {setOpen(true); setOpenMethod(method)}}>
+                  <button disabled={open} onClick={()=> {setOpen(true); setOpenMethod(method)}}
+                    className="bg-[rgb(244,244,245,1)] text-zinc-950 dark:text-white dark:bg-[#27272a]"
+                    >
                   {userObject?.user?.twoFAMethods?.some((el)=>
                   el.name === method) ? "Edit": "Add"}</button>
                   </div>

@@ -1,5 +1,5 @@
 import { Link, useNavigate} from "react-router-dom"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 import "../styles/setwhatsappauth.css"
 import api from "../api/api"
@@ -45,21 +45,70 @@ function PlaceholderFrame({...props}){
     </svg>
     )
 }
-
-
+let count = 0;
 export default function  WhatsAppAuthLogin() {
     const [data, setData] = useState(null);
     const [status, setStatus] = useState("none");
     const [errorMessage, setErrorrmessage] = useState('');
+    const controller = new AbortController();
+    const hasRun = useRef();
     const navigate  = useNavigate();
 
 
+   const getOTPStatus =  async (res, waAuthObject, taskStatus)=>{
+
+        try{
+            const res1 = await api.post("/2fa/session-status-auth",{
+                otp_session_id: res.data.otp_session_id,
+                email: JSON.parse(waAuthObject).email
+            },{signal: controller.signal});
+
+            count++;
+            console.log(count, res1.data);
+
+            if (res1.data.status === "verified"){
+                taskStatus.status = "end";
+                localStorage.setItem("user", JSON.stringify(res1.data));
+                localStorage.removeItem("waAuthObject");
+                setStatus(res1.data.status);
+                setTimeout(navigate("/", {replace: true}),2000)
+               
+               
+                
+            }else if ( res1.data.status === "error"){
+                taskStatus.status = "end";
+                setErrorrmessage(res1.data?.message);
+                setStatus(res1.data.status);
+                localStorage.setItem("2FA-Error",res1.data?.message.split(".")[0])
+                localStorage.removeItem("waAuthObject");
+                setTimeout(navigate("/login", {replace: true}), 2000)
+         
+            
+            
+            }
+            
+        /* eslint-disable-next-line */
+        }catch(err){
+            clearInterval( getOTPStatus);
+            setErrorrmessage("Try Again");
+            setStatus("error");
+            taskStatus.status = "end";
+           
+        }
+
+       
+    }
+
 
   useEffect(()=> {
+    
+    
 
     async function handleWaAuth (){
+         if (hasRun.current) return;
+          hasRun.current =true
 
-         const waAuthObject = localStorage.getItem("waAuthObject");
+         const  waAuthObject = localStorage.getItem("waAuthObject");
 
          if (waAuthObject !== null && waAuthObject !== undefined) {
 
@@ -68,48 +117,23 @@ export default function  WhatsAppAuthLogin() {
                         mobile_no: JSON.parse(waAuthObject).mobile_no,
                         country_code: JSON.parse(waAuthObject).country_code,
                         user_name: JSON.parse(waAuthObject).email.split("@")[0]
-                    });
+                    },{signal: controller.signal});
 
                     setData(res.data);
+                   
                     
 
                     if (res.data.status === "success"){
-
-                        const getOTPStatus  = setInterval(async ()=>{
-                            try{
-                                const res1 = await api.post("/2fa/session-status-auth",{
-                                    otp_session_id: res.data.otp_session_id,
-                                    email: JSON.parse(waAuthObject).email
-                                });
-
-                              
-                                if (res1.data.status === "verified"){
-                                    clearInterval( getOTPStatus);
-                                    localStorage.setItem("user", JSON.stringify(res1.data.user));
-                                    localStorage.removeItem("waAuthObject");
-                                    setStatus(res1.data.status);
-                                      navigate("/", {replace: true})
-                                   
-
-                                }else if ( res1.data.status === "error"){
-                                    setErrorrmessage(res1.data?.message);
-                                    setStatus(res1.data.status);
-                                    clearInterval( getOTPStatus);
-                                    localStorage.setItem("2FA-Error",res1.data?.message.split(".")[0])
-                                    localStorage.removeItem("waAuthObject");
-                                    navigate("/login", {replace: true});
-                                     }
-                                 
-
-                            }catch(err){
                         
-                                clearInterval( getOTPStatus);
-                                setErrorrmessage("Try Again");
-                                setStatus("error");
-                            }
-
-                        }, 2000)
-
+                        let taskStatus = {status: "begin"};
+                        async function task(){
+                            
+                            await  getOTPStatus(res, waAuthObject, taskStatus);
+                            if (taskStatus.status !== "end") setTimeout(task, 2000);
+                            
+                        }
+                     
+                        task();
                        
 
                     } else if ( res.data.status === "error"){
@@ -120,16 +144,16 @@ export default function  WhatsAppAuthLogin() {
 
 
                 }catch(err){
-                
+                console.log(err)
                 }
     
          }
-
-            
+  
 
     } 
    handleWaAuth();
 
+    
   },[])
  
     

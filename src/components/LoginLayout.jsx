@@ -41,7 +41,6 @@ export default function LoginLayout(){
 
 
         function set2FAError(){
-
             const twoFAError = localStorage.getItem("2FA-Error");
 
             if (twoFAError !== undefined && twoFAError !== null){
@@ -49,7 +48,6 @@ export default function LoginLayout(){
                 localStorage.removeItem("2FA-Error");
             }
         }
-
         set2FAError();
       
 

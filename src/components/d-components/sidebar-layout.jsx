@@ -6,7 +6,7 @@ import { NavbarItem } from './navbar'
 
 function OpenMenuIcon() {
   return (
-     <svg viewBox="0 0 24 24" width={20} height={20} fill="none" stroke='rgb(255 255 255)' aria-hidden="true" >
+     <svg viewBox="0 0 24 24" width={20}  className={" stroke-[#71717a] dark:stroke-[rgb(255,255,255)]"}  height={20} fill="none" aria-hidden="true" >
         <path
           d="M5 6h14M5 18h14M5 12h14"
           strokeWidth={2}

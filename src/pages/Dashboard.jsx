@@ -29,7 +29,7 @@ export function Stat({ title, value, change }) {
 
 function CloseButtonIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+    <svg xmlns="http://www.w3.org/2000/svg"  fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" /> 
   </svg>
 
@@ -93,12 +93,12 @@ export default  function Home() {
    
   return (
     <DashboardLayout user={userObject?.user} >
-      { notifications?.map((notification, index)=> <div key={index} className='text-white  bg-zinc-800 hidden gap-x-[2rem] w-[60%]   text-center py-[0.4rem] rounded-lg justify-center ml-[7rem] items-center mt-[-2rem] mb-[1rem] lg:ml-[15rem] lg:mt-[-1rem] lg:w-[50%] lg:flex'>
+      { notifications?.map((notification, index)=> <div key={index} className='bg-[rgb(244,244,245,1)]   hidden gap-x-[2rem] w-[60%]   text-center py-[0.7rem] rounded-lg justify-center ml-[7rem] items-center mt-[-2rem] mb-[1rem] lg:ml-[15rem] lg:mt-[-1rem] lg:w-[50%] lg:flex dark:bg-zinc-800 dark:text-white' >
       {notification?.message}
-      {notification?.action && <button  disabled={isLoading} className="text-[.72rem] bg-purple-500 px-[0.35rem] hover:cursor-pointer rounded-[9px] disabled:opacity-60 disabled:cursor-default" onClick={()=> handleNAction(notification?.action?.route)}>
-        { isLoading? <Arrowpath className={"h-[1.3rem] w-[1.3rem] animate-spin"}  />  : notification?.action?.label}
+      {notification?.action && <button  disabled={isLoading} className=" text-white text-[.82rem] bg-purple-500 px-[0.4rem] hover:cursor-pointer rounded-[6px] disabled:opacity-60 disabled:cursor-default" onClick={()=> handleNAction(notification?.action?.route)}>
+        { isLoading? <Arrowpath className={" h-[1.3rem] w-[1.3rem] animate-spin"}  />  : notification?.action?.label}
       </button> }
-      <i  className="bg-gray-800  hover:cursor-pointer" onClick={()=> handleNotifications(index)}><CloseButtonIcon /></i></div>)
+      <i  className="bg-[rgb(244,244,245,1)]  hover:cursor-pointer dark:bg-zinc-800" onClick={()=> handleNotifications(index)}><CloseButtonIcon /></i></div>)
       }
 
       <Heading><span> Hello, {createStringTitle(userObject?.user?.firstName)}</span> <span style={{fontSize:"1rem"}}>Account No: {userObject?.user?.accountNumber}</span></Heading>

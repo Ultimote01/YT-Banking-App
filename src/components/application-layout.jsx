@@ -190,8 +190,8 @@ export function ApplicationLayout({ user, children }) {
           <NavbarSpacer />
           <NavbarSection>
             <Dropdown >
-              <DropdownButton className= { clsx(`text-blue-600 after:content-['${notifications.length > 0 ? notifications.length : ""}']  after:absolute
-              after:-top-[4px] after:right-[2px] after:text-sm after:text-indigo-200`)}
+              <DropdownButton className= { clsx( `bg-white  text-blue-600 after:content-['${notifications.length > 0 ? notifications.length : ""}']  after:absolute
+              after:-top-[4px] after:right-[2px] after:text-sm after:text-indigo-200  dark:bg-[inherit]`)}
               as={NavbarItem}>
                 <EnvelopeIcon/>
               </DropdownButton>
@@ -249,7 +249,7 @@ export function ApplicationLayout({ user, children }) {
                 <SidebarLabel>Home</SidebarLabel>
               </SidebarItem>
               <SidebarItem to="/" >
-                <ArrowPathIcon />
+                <ArrowPathIcon  className='stroke-[#71717a] dark:stroke-[#a1a1aa]' />
                 <SidebarLabel>History</SidebarLabel>
               </SidebarItem>
               <SidebarItem to="/authentication" >

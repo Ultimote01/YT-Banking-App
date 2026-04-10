@@ -7,8 +7,18 @@ import LandingPage from "./pages/LandingPage";
 import Authentication from "./pages/Authentication";
 import Verify from "./pages/Verify";
 import WhatsAppAuthLogin from "./pages/WhatsAppAuthLogin";
+import { useEffect } from "react";
 
 export default function App() {
+
+useEffect(()=> {
+  navigation.addEventListener('navigate', (event) => {
+  console.log('User is navigating to:', event.destination.url);
+});
+
+})
+
+
   return (
     <BrowserRouter>
       <Routes>
