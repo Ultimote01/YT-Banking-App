@@ -147,6 +147,8 @@ export default function  WhatsAppAuthLogin() {
                 console.log(err)
                 }
     
+         }else{
+            navigate("/", {replace: true})
          }
   
 
