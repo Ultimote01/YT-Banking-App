@@ -56,6 +56,7 @@ export default function LoginLayout(){
 
 
     async function submit({email,password}) {
+        if (!email && !password) return;
     
         setIsLoading(true);
         try {

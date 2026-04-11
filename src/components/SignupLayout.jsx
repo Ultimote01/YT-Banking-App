@@ -38,6 +38,8 @@ export default function SignupLayout(){
  
 
     async function submit (data) {
+        if (Object.keys(data).length !== 4) return;
+
         setIsLoading(true);
         try{
             const res = await api.post("/auth/register/",{
