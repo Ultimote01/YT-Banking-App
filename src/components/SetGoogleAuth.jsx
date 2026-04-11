@@ -60,8 +60,6 @@ export default function SetGoogleAuth({setOpen, setOpenMethod, method,setUserObj
       }
       /* eslint-disable-next-line */
     }catch(err){}
-    
-   
   }
 
   setUp();
@@ -83,8 +81,8 @@ export default function SetGoogleAuth({setOpen, setOpenMethod, method,setUserObj
     });
 
     if (res.data?.message === "2FA enabled"){
-       if (  activeUser?.user?.twoFAEnabled !==  null && activeUser?.user?.twoFAEnabled !== undefined )
-          activeUser.user.twoFAEnabled = true ;
+       if (  activeUser?.user?.twoFAEnabled !==  null && activeUser?.user?.twoFAEnabled !== undefined ){
+          // activeUser.user.twoFAEnabled = true;
 
           const twoFAExist = activeUser.user.twoFAMethods.some((el)=> {
           if (el.name === method) return true;
@@ -92,13 +90,31 @@ export default function SetGoogleAuth({setOpen, setOpenMethod, method,setUserObj
           })
  
           if (!twoFAExist) activeUser.user.twoFAMethods.push(res.data.twoFAData)
+       }
             
     localStorage.setItem("user", JSON.stringify(activeUser));
 
     setUserObject(JSON.parse(localStorage.getItem("user")));
     setOpen(false);
     setOpenMethod("");
+    setOtp("");
+
+    } else if ( res.data?.message === "Invalid token"){
+      if (  activeUser?.user?.twoFAEnabled !==  null && activeUser?.user?.twoFAEnabled !== undefined ){
+          
+        activeUser.user.twoFAMethods= activeUser.user.twoFAMethods.filter((activeMethod)=>
+          method !== activeMethod?.name
+            )}
+
+    localStorage.setItem("user", JSON.stringify(activeUser));
+    setUserObject(JSON.parse(localStorage.getItem("user")));
+    setOpen(false);
+    setOpenMethod("");
+    setOtp("");
+
     }
+
+
      /* eslint-disable-next-line */
     }catch(err) {
       console.log("Error",err?.response?.data);
@@ -124,7 +140,7 @@ export default function SetGoogleAuth({setOpen, setOpenMethod, method,setUserObj
       className=" border-[0.5px] text-black  py-[3px] pl-[4px]  dark:border-[rgb(135, 118, 118)]"
        placeholder="123456" onChange={e => setOtp(e.target.value)} maxLength={10} />
       <div className="setup-two-factor-b-c"> 
-      <button role="cancel" onClick={()=>{setOpen(false); setOpenMethod("")}}>Cancel</button>
+      <button role="cancel" onClick={verify}>Cancel</button>
       <button disabled={otp? false : true} role="verify" onClick={verify}>Verify</button>
       </div>
     </div>

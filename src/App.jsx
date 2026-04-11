@@ -7,21 +7,15 @@ import LandingPage from "./pages/LandingPage";
 import Authentication from "./pages/Authentication";
 import Verify from "./pages/Verify";
 import WhatsAppAuthLogin from "./pages/WhatsAppAuthLogin";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 export default function App() {
 
-useEffect(()=> {
-  navigation.addEventListener('navigate', (event) => {
-  console.log('User is navigating to:', event.destination.url);
-});
-
-if (window.matchMedia("only screen and (max-width: 760px)").matches && /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-  // Mobile screen width detected
-  console.log("Smaller Screen...")
-}
-
-})
+// useEffect(()=> {
+//   navigation.addEventListener('navigate', (event) => {
+//   console.log('User is navigating to:', event.destination.url);
+// });
+// })
 
 
   return (
