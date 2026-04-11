@@ -96,8 +96,18 @@ export default function TwoFactorLogin() {
         <h1>Two-factor Auth</h1>
         <p> Enter the code sent to your authenticator app.</p>
         <div className="two-factor-login-input-c">
-          {Array.from({length: 6}).map((el, index)=> <input key={index}  type="text" id={`input-${index}`}
-          onChange={(e)=> handleInputChange(e, index)} disabled={disableInput}  />)}
+          {
+          
+           (window.matchMedia("only screen and (max-width: 760px)").matches && /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ?
+           
+          Array.from({length: 6}).map((el, index)=> <input key={index}  type="number" id={`input-${index}`}
+          onChange={(e)=> handleInputChange(e, index)} disabled={disableInput}  />)
+          : 
+          Array.from({length: 6}).map((el, index)=> <input key={index}  type="text" id={`input-${index}`}
+          onChange={(e)=> handleInputChange(e, index)} disabled={disableInput}  />)
+          
+          }
+
         </div>
         <Button disabled={disableInput} onClick={()=>verify(getInputsValue())}>Verify</Button>
       </div>

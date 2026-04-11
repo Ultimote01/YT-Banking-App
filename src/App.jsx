@@ -16,6 +16,11 @@ useEffect(()=> {
   console.log('User is navigating to:', event.destination.url);
 });
 
+if (window.matchMedia("only screen and (max-width: 760px)").matches && /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+  // Mobile screen width detected
+  console.log("Smaller Screen...")
+}
+
 })
 
 
