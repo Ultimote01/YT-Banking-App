@@ -63,32 +63,25 @@ export default function TwoFactorLogin() {
    
 
   }
+
     
+ function handleInputKeyUp(e,index= Number(e.target.id.slice(-1))){
 
-  function handleInputChange(e,index){
-
-    if (index === 5 ){
-      document.getElementById(`input-${index}`).setAttribute("maxLength", 1)
-        verify(getInputsValue()) 
-    }
-
-    document.getElementById(`input-${index}`).style.outlineColor="rgb( 0 0 0 / 0.7)";
-
-    if (!Number(e.target.value+1)) {
-       document.getElementById(`input-${index}`).style.outlineColor="red";
-       return 
-    }
-     
-
-    if (e.target.value === "") {
-     
-      document.getElementById(`input-${index-1}`)?.focus();
-
-    } else if (e.target.value !== ""){
+  if (e.code.includes("Digit")){
+    e.target.value = e.key
+   if (e.target.value !== ""){
+      
+      if (getInputsValue().length === 6) return verify(getInputsValue());
       document.getElementById(`input-${index+1}`)?.focus(); 
     }
-     
+
   }
+  if (e.code === "Backspace") {
+    document.getElementById(`input-${index-1}`)?.focus();
+  }
+ 
+ }
+ 
 
   return (
     <div className="two-factor-login-c" >
@@ -97,15 +90,12 @@ export default function TwoFactorLogin() {
         <p> Enter the code sent to your authenticator app.</p>
         <div className="two-factor-login-input-c">
           {
-          
-           (window.matchMedia("only screen and (max-width: 760px)").matches && /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ?
-           
-          Array.from({length: 6}).map((el, index)=> <input key={index}  type="number" id={`input-${index}`}
-          onChange={(e)=> handleInputChange(e, index)} disabled={disableInput}  />)
-          : 
-          Array.from({length: 6}).map((el, index)=> <input key={index}  type="text" id={`input-${index}`}
-          onChange={(e)=> handleInputChange(e, index)} disabled={disableInput}  />)
-          
+          Array.from({length: 6}).map((el, index)=> <input key={index}    type={
+            (window.matchMedia("only screen and (max-width: 760px)").matches && /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))? "number": "text"
+          } id={`input-${index}`}
+          onChange={(e)=> e.target.value=""} disabled={disableInput} 
+          onKeyUp={handleInputKeyUp}
+          />)
           }
 
         </div>
