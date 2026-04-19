@@ -10,6 +10,7 @@ import Spinner from "./Spinner";
 import "../styles/login.css";
 import api from "../api/api";
 import AuthLayout from "./AuthLayout";
+import { setRootBG } from "../util/helperFn";
 
 
 
@@ -19,6 +20,12 @@ export default function LoginLayout(){
     const [error, setError] = useState("");
     const {handleSubmit,register} = useForm();
     const navigate = useNavigate();
+
+    
+
+
+
+
 
     useEffect(()=> {
         const user = JSON.parse(localStorage.getItem("user"));

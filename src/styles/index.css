@@ -36,6 +36,14 @@ input:focus-visible{
 }
 
 
+.auth-bg{
+   background-image:  linear-gradient(to right bottom, oklch(95.466% 0.00182 249.199 / 0.81) 0%,
+    oklch(48.411% 0.22876 294.263 / 0.334) 25%,
+    oklch(95.466% 0.00182 249.199 / 0.81) 100%
+    );
+}
+
+
 @media (prefers-reduced-motion) {
   :root {
     scroll-behavior: auto;

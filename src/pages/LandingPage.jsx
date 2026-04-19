@@ -11,6 +11,9 @@ import Footer from "../components/Footer";
 import FP from "../components/FullPage";
 import Spinner from "../components/Spinner";
 import Dashboard from "./Dashboard"
+import About from "../components/About";
+import Support from "../components/Support";
+import { setRootBG } from "../util/helperFn";
 
  
 
@@ -23,8 +26,14 @@ export default function  LandingPage() {
     const [userData, setUserData] = useState({
         status: null
     });
+
+    if (userData.user?.firstName){
+        setRootBG("dark:bg-zinc-950");
+    }else if (!userData.user?.firstName){
+        setRootBG("bg-white","dark:bg-white");
+    }
     
-    
+     
 
     useEffect(()=>{
         async function authentice() {
@@ -60,6 +69,8 @@ export default function  LandingPage() {
             <Features/>
             <Security/>
             <CallToAction/>
+            <About/>
+            <Support/>
             </main>
              <Footer/> 
             </> }
