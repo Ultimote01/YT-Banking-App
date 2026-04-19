@@ -23,8 +23,8 @@ export default function SignupLayout(){
     const {errors} = formState;
 
    
- setRootBG("ymail", );
- setRootBG("dark:bg-white", "dark:bg-balck")
+//  setRootBG("ymail", );
+//  setRootBG("dark:bg-white", "dark:bg-balck")
 
 
   useEffect(()=> {
