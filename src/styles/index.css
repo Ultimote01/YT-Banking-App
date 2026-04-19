@@ -22,6 +22,7 @@
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
   color-scheme: light dark;
+  scroll-behavior: smooth;
   color: var(--text);
   background: var(--bg);
   font-synthesis: none;
@@ -50,17 +51,6 @@
   }
 }
 
-
-.root-layout{
-  line-height: 1.5;
-  font-weight: 400;
-  scroll-behavior: smooth;
-  color-scheme: dark;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
 
 .root-layout:hover{
   cursor: default;
