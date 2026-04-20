@@ -10,7 +10,6 @@ import Spinner from "./Spinner";
 import "../styles/login.css";
 import api from "../api/api";
 import AuthLayout from "./AuthLayout";
-import { setRootBG } from "../util/helperFn";
 
 
 

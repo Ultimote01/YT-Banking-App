@@ -10,7 +10,7 @@ import Spinner from "./Spinner";
 import api from "../api/api";
 import "../styles/signup.css";
 import AuthLayout from "./AuthLayout";
-import { setRootBG } from "../util/helperFn";
+
  
 
 
@@ -23,8 +23,6 @@ export default function SignupLayout(){
     const {errors} = formState;
 
    
-//  setRootBG("ymail", );
-//  setRootBG("dark:bg-white", "dark:bg-balck")
 
 
   useEffect(()=> {

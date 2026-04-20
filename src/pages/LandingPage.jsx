@@ -13,7 +13,7 @@ import Spinner from "../components/Spinner";
 import Dashboard from "./Dashboard"
 import About from "../components/About";
 import Support from "../components/Support";
-import { setRootBG } from "../util/helperFn";
+
 
  
 
@@ -27,11 +27,7 @@ export default function  LandingPage() {
         status: null
     });
 
-    // if (userData.user?.firstName){
-    //     setRootBG("dark:bg-zinc-950");
-    // }else if (!userData.user?.firstName){
-    //     setRootBG("bg-white","dark:bg-white");
-    // }
+    
     
      
 
