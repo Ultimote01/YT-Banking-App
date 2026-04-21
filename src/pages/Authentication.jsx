@@ -48,7 +48,10 @@ export default function Authentication() {
 
   useEffect(()=>{
     if (userObject === null) navigate("/", {replace: true})
-  })
+  });
+
+
+  console.log("OpenMethod",openMethod);
 
   
   
