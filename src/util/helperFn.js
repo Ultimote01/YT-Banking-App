@@ -23,8 +23,4 @@ export function createStringTitle(string) {
 }
 
 
-export function setRootBG(className, omitValue){
-  const rootLayout = document.getElementsByTagName("html")[0];
-  if (omitValue) rootLayout.classList.remove(omitValue);
-  rootLayout.classList.add(className)
-}
+ 
