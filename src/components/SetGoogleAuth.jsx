@@ -43,6 +43,7 @@ async function copyText( code) {
 export default function SetGoogleAuth({setOpen, setOpenMethod, method,setUserObject}) {
   const [otp, setOtp] = useState("");
   const [qr, setQr] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [errorObj, setErrorObj] = useState(null);
 
 
@@ -71,14 +72,16 @@ export default function SetGoogleAuth({setOpen, setOpenMethod, method,setUserObj
 
 
   const verify = async () => {
+    console.log("verify")
+    setIsLoading(true);
     const activeUser = JSON.parse(localStorage.getItem("user"));
     try{
         const res = await api.post("/2fa/verify", {
-      otp,
-      method
-    });
+        otp,
+        method
+        });
      
-
+    setIsLoading(false);
     if (res.data?.message === "2FA enabled"){
        if (  activeUser?.user?.twoFAEnabled !==  null && activeUser?.user?.twoFAEnabled !== undefined ){
           // activeUser.user.twoFAEnabled = true;
@@ -122,6 +125,9 @@ export default function SetGoogleAuth({setOpen, setOpenMethod, method,setUserObj
   };
 
 
+  if (qr === null && !qr) return;
+
+
   return (
     
     <div className="setup-two-factor-c">
@@ -139,8 +145,8 @@ export default function SetGoogleAuth({setOpen, setOpenMethod, method,setUserObj
       className=" border-[0.5px] text-black  py-[3px] pl-[4px]  dark:border-[rgb(135, 118, 118)]"
        placeholder="123456" onChange={e => setOtp(e.target.value)} maxLength={10} />
       <div className="setup-two-factor-b-c"> 
-      <button role="cancel" onClick={verify}>Cancel</button>
-      <button disabled={otp? false : true} role="verify" onClick={verify}>Verify</button>
+      <button disabled={isLoading} role="cancel" onClick={verify}>Cancel</button>
+      <button disabled={isLoading} role="verify" onClick={verify}>Verify</button>
       </div>
     </div>
   );
