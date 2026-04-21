@@ -49,6 +49,7 @@ export default function SetGoogleAuth({setOpen, setOpenMethod, method,setUserObj
 
 
   useEffect(()=>{
+    console.log("Setup...")
   const setUp = async ()=> {
     try{
       if (requestApi()){
