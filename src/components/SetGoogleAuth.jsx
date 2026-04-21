@@ -50,7 +50,7 @@ export default function SetGoogleAuth({setOpen, setOpenMethod, method,setUserObj
   useEffect(()=>{
   const setUp = async ()=> {
     try{
-
+      console.log("setup in progress");
       if (requestApi()){
       const email = localStorage.getItem("user");
       const res = await api.post("/2fa/setup", {email});
@@ -71,14 +71,13 @@ export default function SetGoogleAuth({setOpen, setOpenMethod, method,setUserObj
 
 
   const verify = async () => {
-
     const activeUser = JSON.parse(localStorage.getItem("user"));
     try{
-         const res = await api.post("/2fa/verify", {
+        const res = await api.post("/2fa/verify", {
       otp,
       method
     });
-    console.log("setup in progress")
+     
 
     if (res.data?.message === "2FA enabled"){
        if (  activeUser?.user?.twoFAEnabled !==  null && activeUser?.user?.twoFAEnabled !== undefined ){
