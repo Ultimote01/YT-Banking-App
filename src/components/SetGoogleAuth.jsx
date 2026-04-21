@@ -141,7 +141,7 @@ export default function SetGoogleAuth({setOpen, setOpenMethod, method,setUserObj
       <br/><br/> Enter Auth code below</span>: `and enter Auth code below` }</h2>
 
       <input 
-      className=" border-[0.5px] text-black  py-[3px] pl-[4px]  dark:border-[rgb(135, 118, 118)]"
+      className=" border-[0.5px] text-black  py-[3px] pl-[4px]  dark:border-[rgb(135, 118, 118)] dark:text-white"
        placeholder="123456" onChange={e => setOtp(e.target.value)} maxLength={10} />
       <div className="setup-two-factor-b-c"> 
       <button disabled={isLoading} role="cancel" onClick={verify}>Cancel</button>
