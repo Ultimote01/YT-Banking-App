@@ -48,7 +48,6 @@ export default function SetGoogleAuth({setOpen, setOpenMethod, method,setUserObj
 
 
   useEffect(()=>{
-  console.log("setup in progress")
   const setUp = async ()=> {
     try{
 
@@ -79,6 +78,7 @@ export default function SetGoogleAuth({setOpen, setOpenMethod, method,setUserObj
       otp,
       method
     });
+    console.log("setup in progress")
 
     if (res.data?.message === "2FA enabled"){
        if (  activeUser?.user?.twoFAEnabled !==  null && activeUser?.user?.twoFAEnabled !== undefined ){
