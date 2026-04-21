@@ -3,7 +3,6 @@ import { useState , useEffect} from "react";
 
 
 import api from "../api/api";
-import requestApi from "../util/helperFn";
 import "../styles/setgoogleauth.css"
 import isMobile from "../util/chcekIsMobile";
 
@@ -52,12 +51,12 @@ export default function SetGoogleAuth({setOpen, setOpenMethod, method,setUserObj
     console.log("Setup...")
   const setUp = async ()=> {
     try{
-      if (requestApi()){
+     
       const email = localStorage.getItem("user");
       const res = await api.post("/2fa/setup", {email});
       console.log("setup in progress: ", res);
       setQr(()=> res.data);
-      }
+      
       /* eslint-disable-next-line */
     }catch(err){}
   }
