@@ -36,7 +36,7 @@ async function copyText( code) {
     console.error('Failed to copy: ', err);
   }
 }
-
+ 
 
 
 export default function SetGoogleAuth({setOpen, setOpenMethod, method,setUserObject}) {
