@@ -204,7 +204,7 @@ export default function  SetWhatsAppAuth({setOpen, method, setOpenMethod,setUser
                             <option value={code[0]} key={index}>{code[0]}</option>
                         )}
                         </select>
-                        <input className=" border-[0.9px] text-black  py-1  border-[rgb(244,244,245,1)] outline-solid  dark:outline-[rgb(24,24,27)]" type="text" id="wa-setup-phone-input" maxLength={15}/>
+                        <input className=" border-[0.9px] text-black   py-1  border-[rgb(244,244,245,1)] outline-solid dark:text-white dark:outline-[rgb(24,24,27)]" type="text" id="wa-setup-phone-input" maxLength={15}/>
 
                         <Button className=" bg-purple-700 dark:bg-[#27272a]" onClick={(e)=> {
 

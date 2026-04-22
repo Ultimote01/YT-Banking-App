@@ -1,7 +1,3 @@
-// import api from "../api/api";
-
- 
-
 
 
 export function createStringTitle(string) {

@@ -48,13 +48,11 @@ export default function SetGoogleAuth({setOpen, setOpenMethod, method,setUserObj
 
 
   useEffect(()=>{
-    console.log("Setup...")
   const setUp = async ()=> {
     try{
      
       const email = localStorage.getItem("user");
       const res = await api.post("/2fa/setup", {email});
-      console.log("setup in progress: ", res);
       setQr(()=> res.data);
       
       /* eslint-disable-next-line */
@@ -71,7 +69,6 @@ export default function SetGoogleAuth({setOpen, setOpenMethod, method,setUserObj
 
 
   const verify = async () => {
-    console.log("verify")
     setIsLoading(true);
     const activeUser = JSON.parse(localStorage.getItem("user"));
     try{

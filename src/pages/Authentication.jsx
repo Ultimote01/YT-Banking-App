@@ -51,8 +51,6 @@ export default function Authentication() {
   });
 
 
-  console.log("OpenMethod",openMethod);
-
   
   
   function handleSelect(event){
