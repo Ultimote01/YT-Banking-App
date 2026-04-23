@@ -62,3 +62,6 @@
     text-align: center;
     outline: solid 0.1px rgb( 0 0 0 / 0.7);
 }
+.two-factor-login-input-c > input:disabled{
+    background-color: antiquewhite;
+}

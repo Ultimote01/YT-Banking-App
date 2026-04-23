@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
@@ -22,6 +22,7 @@ function getInputsValue(){
 export default function TwoFactorLogin() {
   const [disableInput, setDisableInput] = useState(false);
   const navigate = useNavigate();
+  const hasRun = useRef(false);
 
   
 
@@ -31,7 +32,32 @@ export default function TwoFactorLogin() {
     if (tempToken === null || tempToken === undefined) {
        navigate("/", {replace: true});
     }
+
+    if (!hasRun.current){
+    document.getElementById(`input-0`).addEventListener('paste', (event) => {
+    event.preventDefault();
+    // Access clipboard data
+    const pasteData = (event.clipboardData || window.clipboardData).getData('text');
+    console.log("Pasted content:", pasteData, isNaN(pasteData),Number(pasteData));
+    
+    if ( !isNaN(pasteData) && pasteData.length === 6){
+    for (let x = 0; x < pasteData.length; x++){
+      document.getElementById(`input-${x}`).removeAttribute('disabled');
+      document.getElementById(`input-${x}`).value= pasteData[x];
+      if (x > 0 ) document.getElementById(`input-${x}`).setAttribute('disabled', true);
+    }
+    verify(pasteData);
+    }
+
+    
+    
+    });
+    hasRun.current=true;
+  }
+
   })
+
+
 
 
   const verify = async (otp) => {
@@ -66,18 +92,24 @@ export default function TwoFactorLogin() {
 
     
  function handleInputKeyUp(e,index= Number(e.target.id.slice(-1))){
-
+ 
   if (e.code.includes("Digit")){
     e.target.value = e.key
    if (e.target.value !== ""){
-      
       if (getInputsValue().length === 6) return verify(getInputsValue());
+      document.getElementById(`input-${index+1}`)?.removeAttribute("disabled");
       document.getElementById(`input-${index+1}`)?.focus(); 
+      document.getElementById(`input-${index}`).setAttribute("disabled", true);
+       
     }
 
   }
   if (e.code === "Backspace") {
+    document.getElementById(`input-${index-1}`)?.removeAttribute("disabled");
     document.getElementById(`input-${index-1}`)?.focus();
+    if (index > 0){
+     document.getElementById(`input-${index}`)?.setAttribute("disabled",true);
+    }
   }
  
  }
@@ -93,7 +125,9 @@ export default function TwoFactorLogin() {
           Array.from({length: 6}).map((el, index)=> <input key={index}    type={
             (window.matchMedia("only screen and (max-width: 760px)").matches && /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))? "number": "text"
           } id={`input-${index}`}
-          onChange={(e)=> e.target.value=""} disabled={disableInput} 
+         
+          onChange={(e)=> e.target.value=""} 
+          disabled={index !== 0? true: false} 
           onKeyUp={handleInputKeyUp}
           />)
           }
