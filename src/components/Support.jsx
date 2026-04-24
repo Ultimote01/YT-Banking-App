@@ -7,7 +7,7 @@ export default function Support() {
             
              <div style={{backgroundImage: "linear-gradient(to right ,  oklch(31.64% 0.180 288.08) 0%)"}
             } 
-            className="flex items-center justify-center py-[4rem]"
+            className="flex items-center justify-center py-[4rem] mt-[0.2rem]"
             >
               <form>
                 <input/>
