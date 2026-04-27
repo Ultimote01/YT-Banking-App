@@ -24,7 +24,8 @@ function ErrorExp({errorMessage,...props}){
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
         </svg>
             <h5 style={{fontSize: "0.7rem", lineHeight: "1rem", color:"red", textAlign: "center"}}>
-            {errorMessage? errorMessage: ""}</h5>
+            {errorMessage? errorMessage: ""}
+            <br/><br/><Link style={{fontSize: "0.8rem",color:"black",textDecoration:"underline",position:"relative",zIndex:'50'}} to={"/login"}>Go Back</Link></h5>
         </div>
     )
 }
@@ -45,7 +46,7 @@ function PlaceholderFrame({...props}){
     </svg>
     )
 }
-let count = 0;
+
 export default function  WhatsAppAuthLogin() {
     const [data, setData] = useState(null);
     const [status, setStatus] = useState("none");
@@ -63,8 +64,7 @@ export default function  WhatsAppAuthLogin() {
                 email: JSON.parse(waAuthObject).email
             },{signal: controller.signal});
 
-            count++;
-            console.log(count, res1.data);
+          
 
             if (res1.data.status === "verified"){
                 taskStatus.status = "end";
