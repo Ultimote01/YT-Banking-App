@@ -113,9 +113,9 @@ function AccountDropdownMenu({ anchor , handleSignOut,route}) {
         <DropdownLabel>Share feedback</DropdownLabel>
       </DropdownItem>
       <DropdownDivider />
-      <DropdownItem href="/" >
+      <DropdownItem href="/" onClick={()=> handleSignOut(route)}>
         <ArrowRightStartOnRectangleIcon />
-        <DropdownLabel onClick={()=> handleSignOut(route)}>Sign out</DropdownLabel>
+        <DropdownLabel>Sign out</DropdownLabel>
       </DropdownItem>
     </DropdownMenu>
   )

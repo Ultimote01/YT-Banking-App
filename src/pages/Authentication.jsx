@@ -54,16 +54,26 @@ export default function Authentication() {
   
   
   function handleSelect(event){
-    let  siggnOutUpdate =JSON.parse(localStorage.getItem("signOutUpdate"));
+    let  signOutUpdate =JSON.parse(localStorage.getItem("signOutUpdate"));
+     const activeUser = JSON.parse(localStorage.getItem("user"));
   
-    if (siggnOutUpdate !== null && siggnOutUpdate !== undefined) {
-      siggnOutUpdate.preferredAuthMethod = event.target.value;
-      localStorage.setItem("signOutUpdate",JSON.stringify(siggnOutUpdate));
+    if (signOutUpdate !== null && signOutUpdate !== undefined) {
+      signOutUpdate.preferredAuthMethod = event.target.value;
+      localStorage.setItem("signOutUpdate",JSON.stringify(signOutUpdate));
     }else {
-      siggnOutUpdate = {preferredAuthMethod: event.target.value};
-      localStorage.setItem("signOutUpdate",JSON.stringify(siggnOutUpdate));
+      signOutUpdate = {preferredAuthMethod: event.target.value};
+      localStorage.setItem("signOutUpdate",JSON.stringify(signOutUpdate));
     }
- 
+    
+    activeUser.user.twoFAMethods.forEach(method => {
+      if (method.name){
+        method.preferred= false;
+        if (method.name === event.target.value) method.preferred= true;
+      }
+      
+    });
+    console.log(activeUser.user.twoFAMethods);
+    localStorage.setItem("user", JSON.stringify(activeUser));
 
   }
 
