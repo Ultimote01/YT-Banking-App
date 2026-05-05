@@ -96,10 +96,10 @@ export default function Authentication() {
 
             <div className="auth-preferred-method-c border-[0.5px] dark:border-[rgb(255,255,225,0.4)]">
                 <div className="bg-[rgb(244,244,245,1)] text-zinc-950 dark:text-white dark:bg-[#27272a]"> 
-                <h3>Prefered 2FA method</h3>
+                <h3 className="font-medium">Prefered 2FA method</h3>
                 </div>
 
-                <p className="text-zinc-900 dark:text-[rgb(255,255,225,0.8)]">Set your preferred method to use for two-factor authentication when signing into </p>
+                <p className="text-zinc-900   dark:text-[rgb(255,255,225,0.8)] lg:text-medium">Set your preferred method to use for two-factor authentication when signing into your account</p>
 
                 <select name="preferred-method" onChange={(e)=> handleSelect(e)} 
                   className="bg-[rgb(244,244,245,1)] outline-[0.2px] outline-[rgb(255,255,225,0.8)] outline-solid text-zinc-950 dark:text-white dark:bg-[#27272a]"
@@ -113,7 +113,7 @@ export default function Authentication() {
             <div className="auth-2fa-method-c border-[0.5px] dark:border-[rgb(255,255,225,0.4)]">
 
                 <div className="auth-2fa-method-c-div1 bg-[rgb(244,244,245,1)] text-zinc-950 dark:text-white dark:bg-[#27272a]">
-                  <h3> Two-factor methods </h3>
+                  <h3 className="font-medium"> Two-factor methods </h3>
                   </div>
 
                 <div  className="auth-2fa-method-c-div2">
