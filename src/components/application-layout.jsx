@@ -256,7 +256,7 @@ export function ApplicationLayout({ user, children }) {
                 <LockClosedIcon />
                 <SidebarLabel>Authentication</SidebarLabel>
               </SidebarItem>
-              <SidebarItem to="/" >
+              <SidebarItem  >
                 <Cog6ToothIcon />
                 <SidebarLabel>Settings</SidebarLabel>
               </SidebarItem>
