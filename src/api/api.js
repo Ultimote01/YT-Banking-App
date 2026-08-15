@@ -14,7 +14,7 @@ import axios from "axios";
   }
 /*https://yt-backend-1-8kek.onrender.com*/
 const api = axios.create({
-  baseURL: "https://yt-backend-1-8kek.onrender.com",
+  baseURL: "https://yt-backend-qyjz.onrender.com",
   withCredentials: true
 });
 
