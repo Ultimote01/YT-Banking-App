@@ -149,12 +149,14 @@ export default function  SetWhatsAppAuth({setOpen, method, setOpenMethod,setUser
 
                 
             try{
+            
                 const res = await api.post("/2fa/send-otp", {
                         mobile_no: number,
                         country_code: countryCode
                     });
+                         console.log("Res: ",res);
                     setData(res.data);
-
+             
                     if (res.data.status === "success"){
                         const taskStatus = {status: "begin"}
                         async function task(){
@@ -172,9 +174,9 @@ export default function  SetWhatsAppAuth({setOpen, method, setOpenMethod,setUser
                         setErrorrmessage(res.data?.message);
                         setStatus(res.data.status);
                         
-         
                     }
 
+                    
 
                 }catch(err){
                   console.log(err)
