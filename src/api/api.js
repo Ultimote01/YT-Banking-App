@@ -12,9 +12,10 @@ import axios from "axios";
             
       }
   }
-/*https://yt-backend-1-8kek.onrender.com*/
+// const baseURL = "http://localhost:3000";
+const baseURL = "https://yt-backend-qyjz.onrender.com"
 const api = axios.create({
-  baseURL: "https://yt-backend-qyjz.onrender.com",
+  baseURL,
   withCredentials: true
 });
 
